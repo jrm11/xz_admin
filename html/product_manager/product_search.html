@@ -1,6 +1,179 @@
-<section class="wrapper buttonComponent">
-    <!-- page start-->
+<div class="wrapper " id="js-product-list">
 
-    <h1>法定日统一规范</h1>
-    <!-- page end-->
-</section>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#search-modal">搜索</button>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive" id="minimal-checkbox">
+                <table class="table table-condensed table-hover table-bordered" id="table-laptop">
+                    <thead>
+                    <tr>
+                        <th>
+                            <input type="checkbox" aria-label="..."><span class="all-select">全选</span>
+                        </th>
+                        <th>编号</th>
+                        <th>图片</th>
+                        <th>型号</th>
+                        <th>系统</th>
+                        <th>规格</th>
+                        <th>单价</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tbody">
+
+                    </tbody>
+                </table>
+                <ul class="pagination page pull-right" id="pagination">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--search dialog-->
+<div class="js-product-search">
+    <div class="modal fade" id="search-modal" tabindex="-1" role="dailog" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>搜索</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="lower">下限</label>
+                        <input type="text" class="form-control" id="lower" placeholder="下限">
+                    </div>
+                    <div class="form-group">
+                        <label for="upper">上限</label>
+                        <input type="email" class="form-control" id="upper" placeholder="上限">
+                    </div>
+                    <div class="form-group ">
+                        <label for="keyword">关键词</label>
+                        <input type="email" class="form-control" id="keyword" placeholder="关键词">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-action="update-cancel" data-dismiss="modal">取消</button>
+                    <button class="btn btn-primary" data-action="update-search">搜索</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $(function () {
+
+        $(".js-product-search").on("click", "[data-action='update-search']", function () {
+            console.log("dddd");
+
+            loadPage(1, 8);
+            function loadPage(cur, pageSize) {
+                let lower = $("#lower").val();
+                let upper = $("#upper").val();
+                let keyword = $("#keyword").val();
+                var xhr = new XMLHttpRequest();
+                xhr.open("get", `../data/product_search.php?low=${lower}&high=${upper}&kw=${keyword}&pno=${cur}&pageSize=${pageSize}`);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+                        if (xhr.status == 200) {
+//                            console.log(xhr.responseText);
+                            doResponseText(xhr);
+                        } else {
+                            console.log("start question");
+                        }
+                    }
+                };
+                xhr.send(null);
+                function doResponseText(xhr) {
+                    let resText = JSON.parse(xhr.responseText);
+                    console.log("开始响应");
+                    let rows = resText.data;
+                    console.log(resText);
+                    // 当前页
+                    var currPage = resText.pno;
+                    var pageCount = resText.pageCount;
+                    console.log(currPage);
+                    let htmlContent = "";
+                    for (var i = 0; i < rows.length; i++) {
+                        var list = rows[i];
+                        htmlContent += `<tr>
+                            <td><input type="checkbox" aria-label="..."></td>
+                            <td>${list.lid}</td>
+                            <td><img class="product-list-pic" src="../${list.sm}"></td>
+                            <td>${list.fname}</td>
+                            <td>${list.os}</td>
+                            <td>${list.spec}</td>
+                            <td>${list.price}</td>
+                            <td>
+                                <a href="#" data-action="del" data-id="${list.lid}" data-pno="${rows.pno}" class="btn btn-danger btn-xs">删除</a>
+                                <a href="#" data-action="detail" data-id="${list.lid}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#detail-modal">详情</a>
+                                <a href="#" data-action="update" data-id="${list.lid}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modify-modal">修改</a>
+                            </td>
+                            </tr>`;
+                    }
+                    $("#tbody").html(htmlContent);
+
+                    var lis = "";
+                    var halfCount = 2;
+                    var startPage = currPage - halfCount;
+                    var endPage = currPage + halfCount;
+                    if (startPage < 1) {
+                        endPage += 1 - startPage;
+                        startPage = 1;
+                        if (endPage > pageCount) {
+                            endPage = pageCount;
+                        }
+                    } else if (endPage > pageCount) {
+
+                        startPage -= endPage - pageCount;
+                        endPage = pageCount;
+                        if (startPage < 1) {
+                            startPage = 1;
+                        }
+                    }
+                    /**
+                     * 首页 与上一页
+                     *  如果当前页大于1按钮可用
+                     */
+                    lis += `<li class="${currPage > 1 ? "" : "disabled"}"><a href="1">首页</a></li>`;
+                    lis += `<li class="${currPage > 1 ? "" : "disabled"}"><a href="${currPage > 1 ? currPage - 1 : '#'}" >上一页</a></li>`;
+
+                    lis += `<li><a href="1" >1</a></li>`;
+
+                    if (startPage > 1) {
+                        lis += `<li ><a href="${startPage}">...</a></li>`;
+                    }
+
+                    for (var i = startPage; i < endPage - 1; i++) {
+                        lis += `<li class=""><a href="${i + 1}">${i + 1}</a></li>`;
+                    }
+
+                    if (endPage < pageCount) {
+                        lis += `<li><a href="${endPage}">...</a></li>`;
+                    }
+
+                    lis += `<li><a href="${pageCount}" >${pageCount}</a></li>`;
+                    lis += `<li class="${currPage >= endPage ? "disabled" : ""}"><a href="${currPage <= endPage ? currPage + 1 : '#'}" >下一页</a></li>`;
+
+                    lis += `<li class="${currPage >= endPage ? "disabled" : ""}"><a href="${pageCount}">尾页</a></li>`;
+
+
+                    $("#pagination").html(lis);
+                }
+            }
+        });
+//        $("body").bind("keydown", function (e) {
+//            e = window.event || e;
+//            //屏蔽F5刷新键
+//            if (event.keyCode == 116) {
+//                e.keyCode = 0; //IE下需要设置为keyCode为false
+//                return false;
+//            }
+//        });
+    });
+</script>

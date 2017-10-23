@@ -1,18 +1,52 @@
 .right_col-nav {
     background: #fff;
 }
+
 /*覆盖分页文字颜色*/
-.pagination>li>a, .pagination>li>span{
-    color:#0099ff;
+.pagination > li > a, .pagination > li > span {
+    color: #0099ff;
 }
+
 /*覆盖文字居上样式*/
-.table thead>tr>th, .table tbody>tr>th, .table tfoot>tr>th, .table thead>tr>td, .table tbody>tr>td, .table tfoot>tr>td {
+.table thead > tr > th,
+.table tbody > tr > th,
+.table tfoot > tr > th,
+.table thead > tr > td,
+.table tbody > tr > td,
+.table tfoot > tr > td {
     vertical-align: middle;
     text-align: center;
     background: #fff;
 }
 
-.product-list-pic{
+.table thead > tr > th:first-child,
+.table tbody > tr > th:first-child,
+.table tfoot > tr > th:first-child,
+.table thead > tr > td:first-child,
+.table tbody > tr > td:first-child,
+.table tfoot > tr > td:first-child {
+    text-align: left;
+}
+
+.product-list-pic {
     width: 40px;
     height: 40px;
+}
+
+.modal-header {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background: #428bca;
+    color: #fff;
+}
+
+.modal-content {
+    border: 1px solid #666;
+}
+
+/*添加商品页标题*/
+.x_title {
+    border-bottom: 2px solid #E6E9ED;
+    padding: 1px 5px 6px;
+    margin-bottom: 10px
 }

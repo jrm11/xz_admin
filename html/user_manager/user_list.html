@@ -1,7 +1,143 @@
-<section class="wrapper buttonComponent">
-    <!-- page start-->
-    
+<div class="wrapper " id="js-user-list">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-condensed table-hover table-bordered" id="js-user-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <input type="checkbox" aria-label="..."><span class="all-select">全选</span>
+                            </th>
+                            <th>编号</th>
+                            <th>头像</th>
+                            <th>用户名</th>
+                            <th>真是姓名</th>
+                            <th>性别</th>
+                            <th>邮件</th>
+                            <th>电话</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="js-user-body">
+                    </tbody>
 
-    <h1>撒旦法</h1>
-    <!-- page end-->
-</section>
+                </table>
+                <ul class="pagination page pull-right" id="js-user-pagination">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--modify dialog-->
+<div class="update-jumbotron">
+    <div class="modal fade" id="modify-modal" tabindex="-1" role="dailog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>删除用户</h3>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li>
+                            商品名称:<span class="pname js-pname">apple mac</span>
+                        </li>
+                        <li>
+                            商品价格:<input type="text" class="input-price js-price" value="10" />
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-action="update-ok">确定</button>
+                    <button class="btn btn-primary" data-action="update-cancel" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--detail dialog-->
+<div class="detail-jumbotron">
+    <div class="modal fade" id="detail-modal" tabindex="-1" role="dailog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>商品详细信息</h3>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li>
+                            商品名称:<span class="dname"></span>
+                        </li>
+                        <li>
+                            商品类别:<span class="dcategory"></span>
+                        </li>
+                        <li>
+                            商品价格:<span class="dprice"></span>
+                        </li>
+                        <li>
+                            os:<span class="dpos"></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-action="update-cancel" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+</style>
+
+<script>
+    $(function() {
+        // loadUserPage(1,8);
+        //
+        // function loadUserPage(curr,pageSize) {
+        //
+        // }
+        var userTbody = $("#js-user-tbody");
+        var xhr = new XMLHttpRequest();
+        xhr.open("get", "../data/user_list.php", true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    doResponseText(xhr);
+                } else {
+                    console.log("响应完成但有问题");
+                }
+            }
+        }
+        xhr.send();
+
+        function doResponseText(xhr) {
+            var resText = JSON.parse(xhr.responseText);
+            console.log(resText);
+            var userListHtml = "";
+            for (var i = 0, len = resText.length; i < len; i++) {
+                var userList = resText[i];
+                userListHtml += `
+                    <tr>
+                         <td><input type="checkbox" aria-label="..."></td>
+                        <td>${userList.uid}</td>
+                        <td>${userList.avatar}</td>
+                        <td>${userList.uname}</td>
+                        <td>${userList.user_name}</td>
+                        <td>${userList.gender}</td>
+                        <td>${userList.email}</td>
+                        <td>${userList.phone}</td>
+                        <td>
+                            <button class="btn btn-danger btn-xs">删除</button>
+                            <button class="btn btn-primary btn-xs">详情</button>
+                        </td>
+                    </tr>`;
+            }
+
+            $("#js-user-tbody").html(userListHtml);
+
+        }
+    });
+</script>
