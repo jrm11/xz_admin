@@ -1,6 +1,6 @@
 var Script = function () {
 
-//    sidebar dropdown menu
+    //左侧栏下拉菜单
 
     jQuery('#sidebar .sub-menu > a').click(function () {
         var last = jQuery('.sub-menu.open', $('#sidebar'));
@@ -68,7 +68,7 @@ var Script = function () {
         }
     });
 
-// custom scrollbar
+// 自定义滚动条
     $("#sidebar").niceScroll({
         styler: "fb",
         cursorcolor: "#e8403f",
@@ -88,9 +88,7 @@ var Script = function () {
         zindex: '1000'
     });
 
+
 //    tool tips
-
     $('.tooltips').tooltip();
-
-
 }();

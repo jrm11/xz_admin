@@ -3,7 +3,7 @@
  */
 $(function () {
     "use strict";
-    $(".sub").on("click", "li a", function () {
+    $(".sub").on("click", "li a",  ()=> {
         const atN = $(this).attr("data-action");
         const wrap = $("#main-content");
         const pLScript = $("#pLScript");
@@ -12,7 +12,6 @@ $(function () {
             //产品列表
             case "porduct-list":
                 wrap.load("product_manager/product_list.html");
-                // wrap.load("../js/test.js");
                 break;
             // 产品查询
             case "product-search":
@@ -80,5 +79,4 @@ $(function () {
                 break;
         }
     });
-
 });
