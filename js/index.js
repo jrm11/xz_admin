@@ -3,14 +3,13 @@
  */
 $(function () {
     "use strict";
-    $(".sub").on("click", "li a",  ()=> {
+    $(".sub").on("click", "li a",  function(){
         const atN = $(this).attr("data-action");
         const wrap = $("#main-content");
         const pLScript = $("#pLScript");
         switch (atN) {
-
             //产品列表
-            case "porduct-list":
+            case "product-list":
                 wrap.load("product_manager/product_list.html");
                 break;
             // 产品查询

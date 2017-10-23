@@ -1,7 +1,7 @@
 ﻿<?php
 $db_host = 'localhost';
 $db_user = 'root';
-$db_password = 'jian0000';
+$db_password = 'root';
 $db_database = 'xuezi';
 $db_port = 3306;
 $db_charset = 'UTF8';
