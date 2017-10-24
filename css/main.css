@@ -19,12 +19,14 @@
     background: #fff;
 }
 
+/*第一列固定宽度*/
 .table thead > tr > th:first-child,
 .table tbody > tr > th:first-child,
 .table tfoot > tr > th:first-child,
 .table thead > tr > td:first-child,
 .table tbody > tr > td:first-child,
 .table tfoot > tr > td:first-child {
+    width: 60px;
     text-align: left;
 }
 
@@ -49,4 +51,8 @@
     border-bottom: 2px solid #E6E9ED;
     padding: 1px 5px 6px;
     margin-bottom: 10px
+}
+/*添加商品表单组*/
+#form-product-add .form-group{
+    margin-bottom: 0;
 }
