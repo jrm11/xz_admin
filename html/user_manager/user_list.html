@@ -131,8 +131,9 @@
                             <td>${userList.email}</td>
                             <td>${userList.phone}</td>
                             <td>
-                                <button class="btn btn-danger btn-xs" data-action="del" data-id="${userList.uid}" data-pno="${currPage}">删除</button>
-                                <button class="btn btn-primary btn-xs">详情</button>
+                                <button class="btn btn-danger btn-xs" data-action="user-del" data-id="${userList.uid}" data-pno="${currPage}">删除</button>
+                                <button class="btn btn-primary btn-xs" data-action="user-detail" data-id="${userList.uid}" data-pno="${currPage}">详情</button>
+                                <button class="btn btn-waring btn-xs" data-action="user-modify" data-id="${userList.uid}" data-pno="${currPage}">修改</button>
                             </td>
                         </tr>`;
                 }

@@ -14,50 +14,36 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/bootstrap-reset.css" rel="stylesheet">
     <!--external css-->
-    <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet"/>
     <!-- Custom styles for this template -->
     <link href="../css/style.css" rel="stylesheet">
-    <link href="../css/style-responsive.css" rel="stylesheet" />
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
-    <!--[if lt IE 9]>
-    <script src="../js/html5shiv.js"></script>
-    <script src="../js/respond.min.js"></script>
-    <![endif]-->
+    <link href="../css/style-responsive.css" rel="stylesheet"/>
 </head>
 
-  <body class="login-body">
-
-    <div class="container">
-
-      <form class="form-signin" action="index.html">
-        <h2 class="form-signin-heading">sign in now</h2>
+<body class="login-body">
+<div class="container">
+    <div class="form-signin">
+        <h2 class="form-signin-heading">登录</h2>
         <div class="login-wrap">
-            <input type="text" class="form-control" placeholder="User ID" autofocus value="admin">
-            <input type="password" class="form-control" placeholder="Password">
-            <label class="checkbox">
-                <input type="checkbox" value="remember-me"> Remember me
-                <span class="pull-right"> <a href="#"> Forgot Password?</a></span>
-            </label>
-            <button class="btn btn-lg btn-login btn-block" type="submit">Sign in</button>
-            <p>or you can sign in via social network</p>
-            <div class="login-social-link">
-                <a href="index.html" class="facebook">
-                    <i class="icon-facebook"></i>
-                    Facebook
-                </a>
-                <a href="index.html" class="twitter">
-                    <i class="icon-twitter"></i>
-                    Twitter
-                </a>
+            <div class="form-group">
+                <label for="username">账号：</label>
+                <input type="text" class="form-control" id="username" name="uname" placeholder="账号" autofocus>
             </div>
-
+            <div class="form-group">
+                <label for="pwd">密码：</label>
+                <input type="password" id="pwd" class="form-control" name="upwd" placeholder="密码">
+            </div>
+            <label class="checkbox">
+                <input type="checkbox" value="remember-me"> 记住我
+                <span class="pull-right"> <a href="#">忘记密码?</a></span>
+            </label>
+            <button class="btn btn-primary btn-block" type="submit">Sign in</button>
         </div>
-
-      </form>
 
     </div>
 
+</div>
 
-  </body>
+
+</body>
 </html>
