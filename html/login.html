@@ -6,9 +6,8 @@
     <meta name="description" content="">
     <meta name="author" content="Mosaddek">
     <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-    <link rel="shortcut icon" href="img/favicon.html">
-
-    <title>FlatLab - Flat & Responsive Bootstrap Admin Template</title>
+    <link rel="icon" href="../img/favicon.ico">
+    <title>后台登录</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -18,6 +17,9 @@
     <!-- Custom styles for this template -->
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/style-responsive.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../assets/sweetalert/sweet-alert.css">
 </head>
 
 <body class="login-body">
@@ -26,24 +28,39 @@
         <h2 class="form-signin-heading">登录</h2>
         <div class="login-wrap">
             <div class="form-group">
-                <label for="username">账号：</label>
-                <input type="text" class="form-control" id="username" name="uname" placeholder="账号" autofocus>
+                <div>
+                    <label class="text-left" for="js-username">账号：</label>
+                    <!-- 错误信息提示 -->
+                    <p class="error-msg"></p>
+                </div>
+                <input type="text" class="form-control" id="js-username" name="uname" placeholder="账号">
+                <p class="tips js-tips"></p>
             </div>
             <div class="form-group">
-                <label for="pwd">密码：</label>
-                <input type="password" id="pwd" class="form-control" name="upwd" placeholder="密码">
+                <label for="js-pwd">密码：</label>
+                <input type="password" id="js-pwd" class="form-control" name="upwd" placeholder="密码">
+                <p class="tips js-tips"></p>
+            </div>
+            <div class="vcode-box hidden">
+                <label for="js-code">验证码</label>
+                <input type="text" class="form-control vcode-input" id="js-code" name="code" placeholder="验证码"
+                       maxlength="4"/>
+                <div class="vcode-c">
+                    <img src="../data/03_code_gg.php" class="vcode-img js-vcode-img">
+                    <a href="javascript:;" class="fr js-change-vcode">看不清换一张</a>
+                </div>
             </div>
             <label class="checkbox">
                 <input type="checkbox" value="remember-me"> 记住我
                 <span class="pull-right"> <a href="#">忘记密码?</a></span>
             </label>
-            <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+
+            <button class="btn btn-primary btn-block js-submit" type="submit">登录</button>
         </div>
-
     </div>
-
 </div>
-
-
+<script src="../assets/jquery-3.2.1.js"></script>
+<script src="../js/login.js"></script>
+<script src="../assets/sweetalert/sweet-alert.min.js"></script>
 </body>
 </html>

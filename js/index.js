@@ -78,4 +78,9 @@ $(function () {
                 break;
         }
     });
+    var userName = sessionStorage.getItem("uname");
+    if(userName){
+        $("#js-user-name").html(userName);
+    }
+
 });

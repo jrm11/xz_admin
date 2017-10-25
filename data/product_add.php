@@ -1,4 +1,5 @@
 <?php
+header("Content-Type:application/json;charset=utf8");
 //作用:获取用户表单中所有数据并且添加至数据库
 //0:加载init文件
 require("init.php");
