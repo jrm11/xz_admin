@@ -1,7 +1,7 @@
 <?php
     header("Content-Tyep:application/json;charset=utf8");
     require("init.php");
-    @$currPage = $_REQUEST['cur'];
+    @$currPage = $_REQUEST['pno'];
     @$pageSize = $_REQUEST['pageSize'];
     if(!$currPage){
         $currPage = 1;
@@ -17,7 +17,7 @@
     $offsetPage = ($currPage - 1) * $pageSize;
 
     // 分页
-    $sql = "SELECT uid,uname,email,phone,avatar,user_name,gender FROM xz_user LIMIT $currPage,$pageSize";
+    $sql = "SELECT uid,uname,email,phone,avatar,user_name,gender FROM xz_user  GROUP BY uid LIMIT $offsetPage,$pageSize";
     $result = mysqli_query($conn,$sql);
     if(mysqli_error($conn)){
         echo mysqli_error();

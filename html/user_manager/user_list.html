@@ -100,7 +100,7 @@
         function loadUserPage(curr, pageSize) {
             var userTbody = $("#js-user-body");
             var xhr = new XMLHttpRequest();
-            xhr.open("get", "../data/user_list.php", true);
+            xhr.open("get", `../data/user_list.php?pno=${curr}&pageSize=${pageSize}`, true);
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4) {
                     if (xhr.status == 200) {
@@ -109,7 +109,7 @@
                         console.log("响应完成但有问题");
                     }
                 }
-            }
+            };
             xhr.send();
 
             function doResponseText(xhr) {
@@ -121,11 +121,10 @@
                 var userListHtml = "";
                 for (var i = 0, len = obj.length; i < len; i++) {
                     var userList = obj[i];
-                    userListHtml +=`
-                        <tr>
-                             <td><input type="checkbox" aria-label="..."></td>
+                    userListHtml +=`<tr>
+                            <td><input type="checkbox" aria-label="..."></td>
                             <td>${userList.uid}</td>
-                            <td><img src="../${userList.avatar}" alt="" /></td>
+                            <td><img src="../${userList.avatar}" alt="null" /></td>
                             <td>${userList.uname}</td>
                             <td>${userList.user_name}</td>
                             <td>${userList.gender}</td>
@@ -190,8 +189,8 @@
         $("#js-user-pagination").on("click", "li a", function(e) {
             e.preventDefault();
             var curr = $(this).attr('href');
-            console.log("pno======" + curr);
-            loadPage(curr, 8);
+            // console.log("pno======" + curr);
+            loadUserPage(curr, 8);
         });
     });
 </script>

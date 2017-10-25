@@ -114,7 +114,7 @@
                 let resText = JSON.parse(xhr.responseText);
                 console.log("开始响应");
                 let rows = resText.data;
-                console.log(rows);
+                // console.log(rows);
                 // 当前页
                 var currPage = resText.pno;
                 var pageCount = resText.pageCount;
@@ -123,8 +123,6 @@
                 for (var i = 0; i < rows.length; i++) {
                     var list = rows[i];
 
-                    console.log(list);
-                    console.log(list.sm);
                     html +=
                         `<tr>
                             <td><input type="checkbox" aria-label="..."></td>
@@ -195,7 +193,7 @@
         $("#pagination").on("click", "li a", function(e) {
             e.preventDefault();
             var curr = $(this).attr('href');
-            console.log("pno======" + curr);
+            // console.log("pno======" + curr);
             loadPage(curr, 8);
         });
 

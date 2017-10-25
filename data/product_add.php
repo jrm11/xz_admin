@@ -1,21 +1,23 @@
 <?php
-header("Content-Tyep:application/json;charset=utf8");
 //作用:获取用户表单中所有数据并且添加至数据库
 //0:加载init文件
 require("init.php");
 //1:获取用户参数**
- //1:类别id
- $family_id = $_REQUEST["family_id"];
+ //1:类别id     fid_category
+ $category = $_REQUEST["category"];
+ $arr = explode("_",$category);//1_app
+ $family_id = $arr[0];
  if(!preg_match("/^[0-9]{1,}$/",$family_id)){
-   die('{"code":-1,"msg":"类别id有误"}');
+   die('{"code":-1,"msg":"类别id有误 $family_id"}');
  }
+
  //2:产品标题
  $title = $_REQUEST["title"];
- $reg = "/^([_a-z0-9\x{4e00}-\x{9fa5}]+)$/u";
- $rs = preg_match_all($reg,$title);
- if($rs==0){
-    die('{"code":-1,"msg":"标题有误"}');
- }
+// $reg = "/^([\w\x{4e00}-\x{9fa5}]+)$/u";
+// $rs = preg_match_all($reg,$title);
+// if($rs==0){
+//    die('{"code":-1,"msg":"标题有误"}');
+// }
  //3:产品子标题
  $subtitle = $_REQUEST["subtitle"];
  //4:产品价格
@@ -27,15 +29,15 @@ require("init.php");
  //6:产品名称
  $name = $_REQUEST["lname"];
  //7:内存
- $memory = $_REQUEST["memory"];
+ $memory = $_REQUEST["memory"];//ok
  //8:分辨率
- $resolution = $_REQUEST["resolution"];
+ $resolution = $_REQUEST["resolution"];//ok
  //9：显卡
- $video_card = $_REQUEST["video_card"];
+ $video_card = $_REQUEST["video_card"];//ok
  //10:显存
- $video_memory = $_REQUEST["video_memory"];
+ $video_memory = $_REQUEST["video_memory"];//ok
  //11:类别名称
- $category = $_REQUEST["category"];
+ $category = $arr[1];//ok
  //12:磁盘
  $disk = $_REQUEST["disk"];
  //13:产品详情
@@ -45,8 +47,13 @@ require("init.php");
  //15:是否是促销中
  $is_onsale = $_REQUEST["is_onsale"];
  //16:
+ //$expire = $_REQUEST["expire"];
+ //$v1 = $_REQUEST["v1"];
+ //$v2 = $_REQUEST["v2"];
+ //$vi3 = $_REQUEST["vi3"];
+ //$vi4 = $_REQUEST["vi4"];
  //17:创建者id
- $cuid = $_REQUEST["cuid"];
+ $cuid = 1;//
  //18:操作系统
  $os =  $_REQUEST["os"];
  //19:CPU
@@ -59,7 +66,9 @@ require("init.php");
  //$muid = $_REQUEST["muid"];
 //2:验证用户参数**  10:30---10:45
   //3:创建SQL语句**
-  $sql = " INSERT INTO xz_laptop VALUES(null,$family_id,'$title','$subtitle',$price, '$promise','$spec','$name',"; $sql.="'$os','$memory','$resolution','$video_card','$cpu','$video_memory', '$category','$disk','$details','$is_onsale',$cuid)";
+  $sql = " INSERT INTO xz_laptop VALUES(null,$family_id,'$title','$subtitle',$price,'$promise','$spec','$name','$os','$memory','$resolution',";
+  $sql .= " '$video_card','$cpu', '$video_memory','$category','$disk','$details',$is_onsale,$cuid,0, ";
+  $sql .= " '0','',0,0)";
 //4:执行SQL语句并且判断返回数据
 $result = mysqli_query($conn,$sql);
 if(mysqli_error($conn)){
@@ -73,7 +82,6 @@ if($result&&$rowsCount>0){
 }else{
  echo '{"code":-1,"msg":"添加失败"}';
 }
-
 //5:输出结果
 // {"code":-1,"msg":"添加失败"}
 // {"code":1,"msg":"添加成"}
