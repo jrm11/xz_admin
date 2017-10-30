@@ -3,18 +3,13 @@
     require("init.php");
     @$u = $_REQUEST["uname"];
     @$p = $_REQUEST["upwd"];
-    @$v = $_REQUEST["vcode"];//输入次数
+    @$v = $_REQUEST["ncode"];//输入次数
     @$code = $_REQUEST["code"];//用户输入的验证码
 
     //验证密码用户名验证码
     $uPattern='/[\x4E00-\x9FA5\w]{4,20}/';
     $pPattern='/.{6,20}/';
-    $vPattern='/[a-z0-9]{4}/';
-    //验证用户名密码验证码
-    //防止用户输入错误超过4次刷新页面，“刷新页面立即验证”
-    // $uPattern='/[a-z0-9]{3,12}/';
-    // $pPattern='/[a-z0-9]{3,12}/';
-    // $vPattern='/[a-z0-9]{4}/';
+//    $vPattern='/[A-Za-z0-9]{4}/';
 
     if(!preg_match($uPattern,$u)){
         echo '{"code":-2,"msg":"用户名格式不正确"}';

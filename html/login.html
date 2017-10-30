@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="../assets/sweetalert/sweet-alert.css">
+    <link rel="stylesheet" href="../css/animate.css">
 </head>
 
 <body class="login-body">
@@ -31,23 +32,20 @@
                 <div>
                     <label class="text-left" for="js-username">账号：</label>
                     <!-- 错误信息提示 -->
-                    <p class="error-msg"></p>
+                    <p class="error-msg animated"></p>
                 </div>
-                <input type="text" class="form-control" id="js-username" name="uname" placeholder="账号">
-                <p class="tips js-tips"></p>
+                <input type="text" class="form-control" id="js-username" name="uname" placeholder="4-20位字符" minlength="4" maxlength="20">
             </div>
             <div class="form-group">
                 <label for="js-pwd">密码：</label>
-                <input type="password" id="js-pwd" class="form-control" name="upwd" placeholder="密码">
-                <p class="tips js-tips"></p>
+                <input type="password" id="js-pwd" class="form-control" name="upwd" placeholder="6-20位字符" minlength="6" maxlength="20">
             </div>
             <div class="vcode-box hidden">
                 <label for="js-code">验证码</label>
-                <input type="text" class="form-control vcode-input" id="js-code" name="code" placeholder="验证码"
-                       maxlength="4"/>
+                <input type="text" class="form-control vcode-input" id="js-code" name="code" placeholder="验证码"/>
                 <div class="vcode-c">
                     <img src="../data/03_code_gg.php" class="vcode-img js-vcode-img">
-                    <a href="javascript:;" class="fr js-change-vcode">看不清换一张</a>
+                    <a href="javascript:;" class="fr change-code" id="js-change-vcode">看不清换一张</a>
                 </div>
             </div>
             <label class="checkbox">
@@ -62,5 +60,9 @@
 <script src="../assets/jquery-3.2.1.js"></script>
 <script src="../js/login.js"></script>
 <script src="../assets/sweetalert/sweet-alert.min.js"></script>
+<script>
+    var str = "abcdefghijkmnpqrstuvsyABCDEFGHIJKLMNOPQRSTUVWXYZ13456789";
+    console.log(str.length);
+</script>
 </body>
 </html>

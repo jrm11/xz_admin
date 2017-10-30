@@ -1,7 +1,7 @@
 <?php
 function getAuthImage($text) {
-	$im_x = 110;
-	$im_y = 34;
+	$im_x = 160;
+	$im_y = 40;
 	$im = imagecreatetruecolor($im_x,$im_y);
 	$text_c = ImageColorAllocate($im, mt_rand(0,100),mt_rand(0,100),mt_rand(0,100));
 	$tmpC0=mt_rand(100,255);
@@ -10,9 +10,6 @@ function getAuthImage($text) {
 	$buttum_c = ImageColorAllocate($im,$tmpC0,$tmpC1,$tmpC2);
 	imagefill($im, 16, 13, $buttum_c);
 
-	/* 需引入字体文件否则无法显示
-	*  $font = 't1.ttf';
-	*/
 	$font = 't1.ttf';
 
 	for ($i=0;$i<strlen($text);$i++)
@@ -21,7 +18,7 @@ function getAuthImage($text) {
 		$array = array(-1,1);
 		$p = array_rand($array);
 		$an = $array[$p]*mt_rand(1,10);//角度
-		$size = 18;
+		$size = 24;
 		imagettftext($im, $size, $an, 15+$i*$size, 35, $text_c, $font, $tmp);
 	}
 
@@ -73,14 +70,15 @@ function getAuthImage($text) {
 }
 
 function make_rand($length="32"){//验证码文字生成函数
-	$str="abcdefghijkmnpqrstuvxyzABCDEFGHIJKLMNPQRSTUVWXYZ23456789";
+	$str="abcdefghijkmnpqrstuvsyABCDEFGHIJKLMNOPQRSTUVWXYZ13456789";
 	$result="";
 	for($i=0;$i<$length;$i++){
-		$num[$i]=rand(0,56);
+		$num[$i]=rand(0,55);
 		$result.=$str[$num[$i]];
 	}
 	return $result;
 }
+
 
 //输出调用
 $checkcode = make_rand(4);

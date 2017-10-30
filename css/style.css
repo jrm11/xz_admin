@@ -31,6 +31,8 @@ body {
     height: 100%;
 }
 
+
+
 /*sidebar navigation*/
 
 #sidebar {
@@ -291,10 +293,8 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 }
 
 .dropdown-menu.extended {
-    max-width: 300px !important;
-    min-width: 160px !important;
     top: 42px;
-    width: 235px !important;
+    width: 160px !important;
     padding: 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.176) !important;
     border: none !important;
@@ -346,8 +346,8 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 }
 
 .dropdown-menu.extended li a:hover {
-    background-color: #F7F8F9 !important;
-    color: #2E2E2E;
+    background-color: #428bca !important;
+    color: #fff;
 }
 
 .dropdown-menu.tasks-bar .task-info .desc {
@@ -403,10 +403,10 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
     margin-top: 7px;
 }
 
-.top-nav ul.top-menu > li .dropdown-menu.logout {
-    width: 268px !important;
+/*.top-nav ul.top-menu > li .dropdown-menu.logout {*/
+    /*width: 268px !important;*/
 
-}
+/*}*/
 
 .top-nav li.dropdown .dropdown-menu {
     float: right;
@@ -414,51 +414,51 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
     left: auto;
 }
 
-.dropdown-menu.extended.logout > li {
-    float: left;
-    text-align: center;
-    width: 33.3%;
-}
+/*.dropdown-menu.extended.logout > li {*/
+    /*float: left;*/
+    /*text-align: center;*/
+    /*width: 33.3%;*/
+/*}*/
 
-.dropdown-menu.extended.logout > li:last-child {
-    float: left;
-    text-align: center;
-    width: 100%;
-    background: #a9d96c;
-    border-radius: 0 0 3px 3px;
-}
+/*.dropdown-menu.extended.logout > li:last-child {*/
+    /*float: left;*/
+    /*text-align: center;*/
+    /*width: 100%;*/
+    /*background: #a9d96c;*/
+    /*border-radius: 0 0 3px 3px;*/
+/*}*/
 
-.dropdown-menu.extended.logout > li:last-child > a, .dropdown-menu.extended.logout > li:last-child > a:hover {
-    color: #fff;
-    border-bottom: none !important;
-    text-transform: uppercase;
-}
+/*.dropdown-menu.extended.logout > li:last-child > a, .dropdown-menu.extended.logout > li:last-child > a:hover {*/
+    /*color: #fff;*/
+    /*border-bottom: none !important;*/
+    /*text-transform: uppercase;*/
+/*}*/
 
-.dropdown-menu.extended.logout > li:last-child > a:hover > i{
-    color: #fff;
-}
+/*.dropdown-menu.extended.logout > li:last-child > a:hover > i{*/
+    /*color: #fff;*/
+/*}*/
 
-.dropdown-menu.extended.logout > li > a {
-    color: #a4abbb;
-    border-bottom: none !important;
-}
+/*.dropdown-menu.extended.logout > li > a {*/
+    /*color: #a4abbb;*/
+    /*border-bottom: none !important;*/
+/*}*/
 
-.dropdown-menu.extended.logout > li > a:hover {
-    background: none !important;
-    color: #50c8ea;
-}
+/*.dropdown-menu.extended.logout > li > a:hover {*/
+    /*background: none !important;*/
+    /*color: #50c8ea;*/
+/*}*/
 
-.dropdown-menu.extended.logout > li > a:hover i {
-    color: #50c8ea;
-}
+/*.dropdown-menu.extended.logout > li > a:hover i {*/
+    /*color: #50c8ea;*/
+/*}*/
 
-.dropdown-menu.extended.logout > li > a i {
-    font-size: 17px;
-}
+/*.dropdown-menu.extended.logout > li > a i {*/
+    /*font-size: 17px;*/
+/*}*/
 
-.dropdown-menu.extended.logout > li > a > i {
-    display: block;
-}
+/*.dropdown-menu.extended.logout > li > a > i {*/
+    /*display: block;*/
+/*}*/
 
 .top-nav .username {
     font-size: 13px;
@@ -502,7 +502,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
     height: 11px;
     position: absolute;
     right: 20px;
-    top: -10px;
+    top: -12px;
 }
 
 /*----*/
@@ -596,4 +596,12 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 
 .sidebar-closed #sidebar {
     margin-left: -180px;
+}
+
+
+/*设置*/
+/*个人信息*/
+.img-head{
+    width: 100px;
+    height: 100px;
 }

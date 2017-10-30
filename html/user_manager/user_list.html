@@ -110,8 +110,8 @@
                     }
                 }
             };
-            xhr.send();
 
+            xhr.send();
             function doResponseText(xhr) {
                 var resText = JSON.parse(xhr.responseText);
                 var obj = resText.data;
@@ -127,9 +127,9 @@
                             <td><img src="../${userList.avatar}" alt="null" /></td>
                             <td>${userList.uname}</td>
                             <td>${userList.user_name}</td>
-                            <td>${userList.gender}</td>
+                            <td>${sliceGender(userList.gender)}</td>
                             <td>${userList.email}</td>
-                            <td>${userList.phone}</td>
+                            <td>${slicePhone(userList.phone)}</td>
                             <td>
                                 <button class="btn btn-danger btn-xs" data-action="user-del" data-id="${userList.uid}" data-pno="${currPage}">删除</button>
                                 <button class="btn btn-primary btn-xs" data-action="user-detail" data-id="${userList.uid}" data-pno="${currPage}">详情</button>
@@ -193,5 +193,26 @@
             // console.log("pno======" + curr);
             loadUserPage(curr, 8);
         });
+
+
+        /**
+         * 该函数为了转换性别   0->男
+         *                    1->女
+         * @param gender
+         */
+        function sliceGender(gender){
+            return gender=='0'?"男":"女";
+        }
+
+       /**
+        * 隐藏手机中间四位
+        * @param phone  (139)(9999)(9999)
+        * @return       139####9999
+        */
+        function slicePhone(phone){
+            var reg = /(\d{3})(\d{4})(\d{4})/;
+            var rs = phone.replace(reg,"$1****$3");
+            return rs;
+        }
     });
 </script>

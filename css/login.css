@@ -1,86 +1,68 @@
 /*login page*/
-
 .login-body {
-    background-color: #f1f2f7;
+  background-color: #f1f2f7;
 }
-
 .form-signin {
-    max-width: 330px;
-    margin: 100px auto 0;
-    background: #fff;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
+  max-width: 330px;
+  margin: 100px auto 0;
+  background: #fff;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  box-shadow: 0 0 10px 3px #9c9c9c;
 }
-
 .form-signin h2.form-signin-heading {
-    margin: 0;
-    padding: 20px 15px;
-    text-align: center;
-    background: #41cac0;
-    border-radius: 5px 5px 0 0;
-    -webkit-border-radius: 5px 5px 0 0;
-    color: #fff;
-    font-size: 18px;
-    text-transform: uppercase;
-    font-weight: 300;
-    font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 20px 15px;
+  text-align: center;
+  background: #428bca;
+  border-radius: 5px 5px 0 0;
+  -webkit-border-radius: 5px 5px 0 0;
+  color: #fff;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 300;
+  font-family: 'Open Sans', sans-serif;
 }
-
 .form-signin .checkbox {
-    margin-bottom: 14px;
+  margin-bottom: 14px;
 }
-
 .form-signin .checkbox {
-    font-weight: normal;
-    color: #b6b6b6;
-    font-weight: 300;
-    font-family: 'Open Sans', sans-serif;
+  font-weight: normal;
+  color: #b6b6b6;
+  font-weight: 300;
+  font-family: 'Open Sans', sans-serif;
 }
-
 .login-wrap {
-    padding: 20px;
+  padding: 20px;
 }
-
 .vcode-box {
-    position: relative;
-    margin-bottom: 15px;
+  position: relative;
+  margin-bottom: 15px;
 }
-
 .vcode-c {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    height: 34px;
-    line-height: 34px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 34px;
+  line-height: 34px;
 }
-
 .vcode-img {
-    height: 34px;
-    width: 80px;
-    margin-right: 10px;
-    vertical-align: top;
+  height: 34px;
+  width: 80px;
+  margin-right: 10px;
 }
-
 .vcode-input {
-    width: 100px;
-    /*margin-right: 200px !important;*/
+  width: auto;
+  margin-right: 200px !important;
 }
-
 .hidden {
-    display: none;
+  display: none;
 }
-
 .error-msg {
-    float: right;
-    text-align: right;
-    color: red;
-    font-size: 14px;
-    transition: .3s;
-    font-weight: bold;
-}
-
-/*提示信息*/
-.tips{
-    height: 20px;
-    line-height: 20px;
+  float: right;
+  text-align: right;
+  color: red;
+  font-size: 14px;
+  transition: .3s;
+  font-weight: bold;
 }

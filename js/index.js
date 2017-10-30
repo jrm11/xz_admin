@@ -3,11 +3,16 @@
  */
 $(function () {
     "use strict";
+    var userName = sessionStorage.getItem("uname");
+    if(userName){
+        $("#js-user-name").html(userName);
+    }else{
+        location.href = "login.html";
+    }
     $(".sub").on("click", "li a",  function(){
-        const atN = $(this).attr("data-action");
+        const action = $(this).attr("data-action");
         const wrap = $("#main-content");
-        const pLScript = $("#pLScript");
-        switch (atN) {
+        switch (action) {
             //产品列表
             case "product-list":
                 wrap.load("product_manager/product_list.html");
@@ -78,9 +83,4 @@ $(function () {
                 break;
         }
     });
-    var userName = sessionStorage.getItem("uname");
-    if(userName){
-        $("#js-user-name").html(userName);
-    }
-
 });
