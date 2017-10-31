@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>上传</title>
+</head>
+<body>
+<div class="box">
+    <form action="data/upload.php" method="post" enctype="multipart/form-data">
+            <input type="file" name="myfile" style="font-size: 0.7rem;">
+            <button type="button" style="display: block; padding: 4px 18px;" class="btn-default">ajax提交</button>
+            <!-- <button type="submit" style="display: block; padding: 4px 18px;" class="btn-default">form提交</button> -->
+    </form>
+    <div class="prompt" style="font-size: 0.7rem;"></div>
+</div>
+<script src="assets/jquery-3.2.1.js"></script>
+<script>
+    $(function ($) {
+        $('input[name=myfile]').on('change', function (e) {
+            $('button[type=button]').on('click', function (e) {
+                var formData = new FormData();
+                var objUrl = getObjectURL(this.files[0]) ; //获取图片的路径，该路径不是图片在本地的路径
+                // formData.ppend(name, element);
+                if (objUrl) {
+                    $("#pic").attr("src", objUrl) ; //将图片路径存入src中，显示出图片
+                    console.log("objUrl"+objUrl);
+                }
+                formData.append('myfile', $('input[name=myfile]')[0].files[0]);
+                console.log($('input[name=myfile]')[0].files[0].name);
+
+                $.ajax({
+                    url: 'upload.php',
+                    method: 'POST',
+                    data: formData,
+                    contentType: false, // 注意这里应设为false
+                    processData: false,
+                    cache: false,
+                    success: function (data) {
+                        if (JSON.parse(data).result == 1) {
+                            $('.prompt').html(`文件${JSON.parse(data).filename}已上传成功`);
+                        }
+                    },
+                    error: function (jqXHR) {
+                        console.log(JSON.stringify(jqXHR));
+                    }
+                })
+                        .done(function (data) {
+                            console.log('done');
+                        })
+                        .fail(function (data) {
+                            console.log('fail');
+                        })
+                        .always(function (data) {
+                            console.log('always');
+                        });
+            });
+        });
+
+        function getObjectURL(file) {
+            var url = null ;
+            if (window.createObjectURL!=undefined) { // basic
+                url = window.createObjectURL(file) ;
+            } else if (window.URL!=undefined) { // mozilla(firefox)
+                url = window.URL.createObjectURL(file) ;
+            } else if (window.webkitURL!=undefined) { // webkit or chrome
+                url = window.webkitURL.createObjectURL(file) ;
+            }
+            return url ;
+        }
+    });
+</script>
+</body>
+</html>
