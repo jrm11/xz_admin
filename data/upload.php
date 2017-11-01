@@ -35,19 +35,24 @@
  if($type !=".gif" &&$type !=".png"&&$type !=".jpg"&&$type !=".jpeg" &&$type !=".avi"&&$type !=".mp4"){
      die('{"code":-3,"msg":"格式不正确"}');
  }
-
- $fileName = time().rand(1,9999).$type;
+//   文件名
+ $fileName = $filename.$type;
  $src = $_FILES['myfile']['tmp_name'];
- $des = "../img/".$fileName;
+ $des = "../upload/".$fileName;
 
- $imgLocation = move_uploaded_file($src,$des);
+// $imgLocation = move_uploaded_file($src,$des);
+ move_uploaded_file($src,$des);
  require("init.php");
   $uid = $_REQUEST['uid'];
-  $sql = "UPDATE xz_user SET avatar = '$imgLocation' WHERE uid = $uid";
+  $sql = "UPDATE xz_user SET avatar = '$fileName' WHERE uid = $uid";
   $result = mysqli_query($conn,$sql);
-  if($result){
-      echo '{"code":1,"msg":"更新成功"}';
+  $rows = mysqli_affected_rows($conn);
+  if(mysqli_error($conn)){
+    echo mysqli_error($conn);
+  }
+  if($result && $rows>0){
+      echo '{"code":1,"msg":"上传成功"}';
   }else{
-      echo '{"code":-1,"msg":"更新失败"}';
+      echo '{"code":-1,"msg":"上传失败"}';
   }
 // echo '{"code":1,"msg":"上传成功"}';

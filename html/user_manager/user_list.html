@@ -88,7 +88,7 @@
                     userListHtml += `<tr>
                             <td><input type="checkbox" aria-label="..."></td>
                             <td>${userList.uid}</td>
-                            <td><img src="../${userList.avatar}" alt="null" /></td>
+                            <td><img src="../upload/${userList.avatar}" alt="null" /></td>
                             <td>${userList.uname}</td>
                             <td>${userList.user_name}</td>
                             <td>${sliceGender(userList.gender)}</td>
@@ -183,7 +183,7 @@
 
         });
         $("#js-user-table").on("click", "[data-action='user-upload']", function() {
-            var lid = $(this).attr("data-id");
+            var uid = $(this).attr("data-id");
             $(document).on({
                 dragleave: function (e) {
                     e.preventDefault();
@@ -224,13 +224,14 @@
                 var str = `<img src="${img}" /><p>${fileName}</p>`;
                 //11:显示预览图片
                 $(".pic").html(str);
-                var fd = new FormData();
-                fd.append("myfile", fileList[0]);
-                fd.append("uid", lid);
-                console.log("==="+fd.entries());
+//                console.log("==="+fd.entries());
                 //13:创建AJAX对象发送数据
                 var uploadOk = document.querySelector("#js-upload-ok");
                 uploadOk.onclick = function () {
+                    console.log("======");
+                    var fd = new FormData();
+                    fd.append("myfile", fileList[0]);
+                    fd.append("uid", uid);
                     var xhr = new XMLHttpRequest();
                     xhr.onreadystatechange = function () {
                         if (xhr.readyState == 4) {
@@ -238,8 +239,8 @@
                                 var json = JSON.parse(xhr.responseText);
                                 if (json.code > 0) {
                                     console.log(json);
-//                                    alert("上传成功");
-//                                    location.reload();
+                                    alert("上传成功");
+                                    location.reload();
                                 } else {
                                     alert("上传失败");
                                 }
@@ -254,7 +255,7 @@
                     xhr.send(fd);
                 }
             }
-            console.log(lid);
+            console.log(uid);
         });
     });
 </script>
