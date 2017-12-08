@@ -122,7 +122,6 @@
                 let html = "";
                 for (var i = 0; i < rows.length; i++) {
                     var list = rows[i];
-
                     html +=
                         `<tr>
                             <td><input type="checkbox" aria-label="..."></td>
@@ -274,7 +273,7 @@
                     lid: lid,
                     price: price
                 },
-                success: function(data) {
+                    var data = JSON.parse(data);
                     if (data.code > 0) {
                         alert(data.msg);
                         $(".update-jumbotron").hide();
@@ -300,6 +299,7 @@
             e.preventDefault();
             var lid = $(this).attr("data-id");
             console.log(lid);
+
             // $("[data-action='pdate-oku']").attr("data-lid", lid);
             var div = $(".detail-jumbotron");
             var detailName = $(".dname");

@@ -20,7 +20,8 @@
 //}else{
 //    echo '{"code":-1,"msg":"更新失败"}';
 //}
-
+ require("init.php");
+ require("00_imageUtils.php");
  $rs = empty($_FILES);
  if($rs){
      die ('{"code":-1,"msg":"没有上传文件请检查"}');
@@ -36,13 +37,13 @@
      die('{"code":-3,"msg":"格式不正确"}');
  }
 //   文件名
- $fileName = $filename.$type;
+ $fileName = time().rand(1,99999).$type;
  $src = $_FILES['myfile']['tmp_name'];
  $des = "../upload/".$fileName;
 
 // $imgLocation = move_uploaded_file($src,$des);
  move_uploaded_file($src,$des);
- require("init.php");
+
   $uid = $_REQUEST['uid'];
   $sql = "UPDATE xz_user SET avatar = '$fileName' WHERE uid = $uid";
   $result = mysqli_query($conn,$sql);
@@ -50,6 +51,8 @@
   if(mysqli_error($conn)){
     echo mysqli_error($conn);
   }
+  mkThumbnail($des,50,50,"../upload/s_".$fileName);
+  mkThumbnail($des,80,80,"../upload/m_".$fileName);
   if($result && $rows>0){
       echo '{"code":1,"msg":"上传成功"}';
   }else{

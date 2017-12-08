@@ -81,14 +81,14 @@
                 var obj = resText.data;
                 var currPage = resText.pno;
                 var pageCount = resText.pageCount;
-                console.log(currPage, pageCount);
                 var userListHtml = "";
+                var userList = "";
                 for (var i = 0, len = obj.length; i < len; i++) {
-                    var userList = obj[i];
+                    userList = obj[i];
                     userListHtml += `<tr>
                             <td><input type="checkbox" aria-label="..."></td>
                             <td>${userList.uid}</td>
-                            <td><img src="../upload/${userList.avatar}" alt="null" /></td>
+                            <td><img class="js-avatar" src="../upload/s_${userList.avatar}" alt="null" /></td>
                             <td>${userList.uname}</td>
                             <td>${userList.user_name}</td>
                             <td>${sliceGender(userList.gender)}</td>
@@ -102,6 +102,7 @@
                             </td>
                         </tr>`;
                 }
+
                 userTbody.html(userListHtml);
                 var lis = "";
                 var halfCount = 2;
@@ -182,7 +183,7 @@
             //阻止游览器默认行为
 
         });
-        $("#js-user-table").on("click", "[data-action='user-upload']", function() {
+        $("#js-user-table").on("click", "[data-action='user-upload']", function () {
             var uid = $(this).attr("data-id");
             $(document).on({
                 dragleave: function (e) {
@@ -254,8 +255,9 @@
                     //16:发送数据
                     xhr.send(fd);
                 }
-            }
+            };
             console.log(uid);
         });
+
     });
 </script>
